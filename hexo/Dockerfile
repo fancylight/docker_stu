@@ -2,15 +2,16 @@ FROM dustise/yum.centos7
 MAINTAINER 15529439929@163.com
 WORKDIR /usr/src/myBlog
 COPY . /usr/src/myBlog
-ENV NODEJS_HOME=/usr/src/myBlog/nodejs
+ENV NODEJS_HOME=/usr/local/src/nodejs
 ENV PATH=$PATH:$NODEJS_HOME/bin
 ENV NODEJS_PATH=$NODEJS_HOME/lib/node_modules
+ENV LANG en_US.utf8
+ENV TZ Asia/Shanghai
 RUN echo "安装nodejs-------------------" \
 && tar -xf ./node-v12.16.3-linux-x64.tar.xz -C ./ \
-&& mv ./node-v12.16.3-linux-x64 ./nodejs \
-&& echo export NODEJS_HOME=/usr/src/myBlog/nodejs >> /etc/profile \
-&& ln -s /usr/src/myBlog/nodejs/bin/node /usr/local/bin/node \
-&& ln -s /usr/src/myBlog/nodejs/bin/npm /usr/local/bin/npm \
+&& mv ./node-v12.16.3-linux-x64 /usr/local/src/nodejs \
+&& ln -s /usr/local/src/nodejs/bin/node /usr/local/bin/node \
+&& ln -s /usr/local/src/nodejs/bin/npm /usr/local/bin/npm \
 && node --version \
 && npm --version \
 && echo $PATH \
