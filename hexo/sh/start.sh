@@ -1,1 +1,1 @@
-docker run -d -restart=always -p 4000:4000 -p 8888:80 -v F:\docker\hexo_ck:/usr/src/myBlog ck/hexo
+docker run --privileged=true --name=hexo -d --restart=always -p 4000:4000 -p 8888:80 -v F:\docker\hexo_ck:/usr/src/myBlog ck/hexo bash ./init.sh
